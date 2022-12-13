@@ -8,7 +8,7 @@ api_key = "2839b6012af49108dab56c41744c92e6"
 url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
 
 while True:
-
+    
     response = requests.get(url)
     data = response.json()
 
@@ -16,6 +16,7 @@ while True:
     temperature = data["main"]["temp"] - 273.15
     weather = data["weather"][0]["main"]
 
+    # Prints out the current weather conditions
     print(f"The current temperature in {city} is {temperature:.1f}°C")
     print(f"The current conditions are: {weather}")
 
@@ -55,8 +56,8 @@ while True:
 
     #set wallpaper
     absolute_path = os.path.dirname(__file__)
-    relative_path = wallpaper
+    relative_path = "wallpapers/" + wallpaper
     full_path = os.path.join(absolute_path, relative_path)
     ctypes.windll.user32.SystemParametersInfoW(20, 0, full_path , 0)
-
+    print("Waiting 5 minutes for next update...")
     time.sleep(300)
